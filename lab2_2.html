@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Лаба 2.2</title>
+    <style>
+        .err {
+            background: rgb(205, 0 , 0);
+        }
+    </style>
+    <script type="text/javascript">
+
+        function doSend(){
+
+            var right_email=document.form.email.value.indexOf("@",1);
+
+            if(document.form.Name.value=="")
+            {
+                alert('Поле ФИО не заполнено.');
+                document.form.Name.classList.add("err");
+                document.form.Name.focus();
+                return false;
+            }
+
+            if(document.form.password.value==""){
+                document.form.password.classList.add("err");
+                alert('Поле Пароль не заполнено.');
+                document.form.password.focus();
+                return false;
+            }
+
+            else if(document.form.password.value.length<=4){
+                document.form.password.classList.add("err");
+                alert('Пароль должен содержать больше 4 символов');
+                document.form.password.focus();
+                return false;
+            }
+
+            if((document.form.password.value) != (document.form.re_password.value)){
+                document.form.re_password.classList.add("err");
+                alert('Пароли не совпадают');
+                document.form.re_password.focus();
+                return false;
+            }
+
+            if(right_email==-1){
+                document.form.email.classList.add("err");
+                alert('Email введен неверно');
+                document.form.email.focus();
+                return false;
+            }
+
+            if(document.form.textarea.value.length<10){
+                document.form.textarea.classList.add("err");
+                alert('Сообщение должно содержать минимум 10 символов.');
+                document.form.massage.focus();
+                return false;
+            }
+
+            else return document.form.submit();
+        }
+
+    </script>
+</head>
+<body>
+<form name="form">
+    <p>
+        <label>
+            Имя:
+        </label>
+
+        <input type="text" name="Name">
+    </p>
+
+    <p>
+        <label>
+            Пароль:
+        </label>
+
+        <input type="password" name="password">
+    </p>
+
+    <p>
+        <label>
+            Повторите пароль:
+        </label>
+
+        <input type="password" name="re_password">
+    </p>
+
+    <p>
+        <label>
+            Email:
+        </label>
+
+        <input type="email" name="email">
+
+    </p>
+
+    <p>
+        <label>
+            Тема сообщения:
+        </label>
+
+        <input type="text" name="tema">
+
+    </p>
+
+    <p>
+        <label>
+            Сообщение:
+        </label>
+
+        <textarea name="massage"></textarea>
+    </p>
+
+    <p>
+
+        <input type="button" value="Отправить" onClick="doSend()">
+
+        <button type="reset">Сбросить</button>
+
+    </p>
+
+</form>
+
+<br>
+
+
+</body>
+</html>

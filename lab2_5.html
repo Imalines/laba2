@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Лаба 2.5</title>
+    <meta charset="utf-8">
+</head>
+<body>
+<div>
+    <h1>Кот проголодался. Покорми его.</h1>
+</div>
+
+<img src="fish.jpg" alt="eat" id="img" height="100" width="100">
+<img src="cat.png" alt="cat" align="right">
+
+<script
+        src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+
+    var img = document.getElementById('img');
+
+    img.onmousedown = function(e) {
+
+        var coords = getCoords(img);
+        var shiftX = e.pageX - coords.left;
+        var shiftY = e.pageY - coords.top;
+
+        img.style.position = 'absolute';
+        document.body.appendChild(img);
+        moveAt(e);
+
+        img.style.zIndex = 1000; // над другими элементами
+
+        function moveAt(e) {
+            img.style.left = e.pageX - shiftX + 'px';
+            img.style.top = e.pageY - shiftY + 'px';
+        }
+
+        document.onmousemove = function(e) {
+            moveAt(e);
+        };
+
+        img.onmouseup = function() {
+            document.onmousemove = null;
+            img.onmouseup = null;
+        };
+
+    }
+
+    img.ondragstart = function() {
+        return false;
+    };
+
+    function getCoords(elem) {
+        var box = elem.getBoundingClientRect();
+        return {
+            top: box.top + pageYOffset,
+            left: box.left + pageXOffset
+        };
+    }
+</script>
+</body>
+</html>

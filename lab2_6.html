@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Лаба 2.6</title>
+    <meta charset="utf-8">
+    <script
+            src="https://code.jquery.com/jquery-3.6.0.js"
+            integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+            crossorigin="anonymous"></script>
+    <style type="text/css">
+        body{
+            background:#EFAFFA;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container{
+            margin-top: 100px;
+            border: 2px solid black;
+            background: #DCF43C;
+            display: flex;
+            flex-direction: column;
+            width: 30%;
+            padding: 1%;
+            border-radius: 30px;
+        }
+        .questions{
+            display: flex;
+            flex-direction: column;
+        }
+        h2{
+            display: inline-block;
+            align-self: center;
+        }
+        .questions label{
+            font-size: 1.2em;
+            text-align: center;
+        }
+        .questions button,input{
+            width: 80%;
+            height: 30px;
+            font-size: 1.2em;
+            border: 2px solid black;
+            border-radius: 30px;
+            outline: none;
+            text-align: center;
+        }
+        .questions button:hover{
+            background: #CD5CFC;
+            color: white;
+        }
+        .questions button:active{
+            background: #FF14F3;
+        }
+        output{
+            margin-left: 50px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <h2>Какоу у тебя домашнее животное?</h2>
+
+    <form name="questions" class="questions">
+        <p>
+            <button id="1">Кот</button>
+
+            <label id="1_label" nam="one"></label>
+
+            <output id="proc1" type="text" name="1" readonly></output>
+        </p>
+
+        <p>
+            <button id="2">Пес</button>
+
+            <label id="2_label"></label>
+
+            <output id="proc2" type="text" name="2" readonly></output>
+        </p>
+
+        <p>
+            <button id="3">Попугай</button>
+
+            <label id="3_label"></label>
+
+            <output id="proc3" type="text" name="3" readonly></output>
+        </p>
+
+        <p>
+            <button id="4">Харек</button>
+
+            <label id="4_label"></label>
+
+            <output id="proc4" type="text" name="4" readonly></output>
+        </p>
+    </form>
+</div>
+
+<button id="btn" style="margin: 20px 0; ">Расчитать процент проголосовавших</button>
+
+<br>
+
+<script type="text/javascript">
+    var one = 0;
+    var two = 0;
+    var three = 0;
+    var four = 0;
+    var all = 0;
+    $(document).ready(function(){
+        $("#btn").click(function(){
+            document.getElementById("proc1").value = (one/all)*100+"%";
+            document.getElementById("proc2").value = (two/all)*100+"%";
+            document.getElementById("proc3").value = (three/all)*100+"%";
+            document.getElementById("proc4").value = (four/all)*100+"%";
+        });
+        $("#1").click(function(){
+            one +=1;
+            all +=1;
+            $("#1_label").text(one);
+            return false;
+        });
+        $("#2").click(function(){
+            two +=1;
+            all +=1;
+            $("#2_label").text(two);
+            return false;
+        });
+        $("#3").click(function(){
+            three +=1;
+            all +=1;
+            $("#3_label").text(three);
+            return false;
+        });
+        $("#4").click(function(){
+            four +=1;
+            all +=1;
+            $("#4_label").text(four);
+            return false;
+        });
+    });
+
+</script>
+</body>
+</html>
